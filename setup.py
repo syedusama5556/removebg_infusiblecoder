@@ -51,6 +51,6 @@ setup(
     extras_require={
         "gpu": gpu_requireds,
     },
-    version=versioneer.get_version(),
-    cmdclass=versioneer.get_cmdclass(),
+    version='0.0.1',
+   
 )
