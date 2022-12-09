@@ -18,13 +18,13 @@ with open(here / "requirements-gpu.txt") as f:
     gpu_requireds = f.read().splitlines()
 
 setup(
-    name="rembg",
+    name="removebg_infusiblecoder",
     description="Remove image background",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/danielgatis/rembg",
-    author="Daniel Gatis",
-    author_email="danielgatis@gmail.com",
+    url="https://github.com/syedusama5556/removebg_infusiblecoder",
+    author="Syed Usama Ahmad",
+    author_email="syedusama5556@gmail.com",
     classifiers=[
         "License :: OSI Approved :: MIT License",
         "Topic :: Scientific/Engineering",
@@ -40,12 +40,12 @@ setup(
         "Programming Language :: Python :: 3.10",
     ],
     keywords="remove, background, u2net",
-    packages=["rembg"],
+    packages=["removebg_infusiblecoder"],
     python_requires=">3.7, <3.11",
     install_requires=requireds,
     entry_points={
         "console_scripts": [
-            "rembg=rembg.cli:main",
+            "removebg_infusiblecoder=removebg_infusiblecoder.cli:main",
         ],
     },
     extras_require={

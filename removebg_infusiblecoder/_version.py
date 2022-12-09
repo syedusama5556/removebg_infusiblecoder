@@ -42,8 +42,8 @@ def get_config():
     cfg.VCS = "git"
     cfg.style = "pep440"
     cfg.tag_prefix = "v"
-    cfg.parentdir_prefix = "rembg-"
-    cfg.versionfile_source = "rembg/_version.py"
+    cfg.parentdir_prefix = "removebg_infusiblecoder-"
+    cfg.versionfile_source = "removebg_infusiblecoder/_version.py"
     cfg.verbose = False
     return cfg
 

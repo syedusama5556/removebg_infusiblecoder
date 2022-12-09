@@ -277,22 +277,22 @@ def s(port: int, log_level: str, threads: int) -> None:
             "description": "Endpoints that perform background removal with different image sources.",
             "externalDocs": {
                 "description": "GitHub Source",
-                "url": "https://github.com/danielgatis/rembg",
+                "url": "https://github.com/syedusama5556/removebg_infusiblecoder",
             },
         },
     ]
     app = FastAPI(
-        title="Rembg",
-        description="Rembg is a tool to remove images background. That is it.",
+        title="removebg_infusiblecoder",
+        description="removebg_infusiblecoder is a tool to remove images background. That is it.",
         version=_version.get_versions()["version"],
         contact={
-            "name": "Daniel Gatis",
-            "url": "https://github.com/danielgatis",
-            "email": "danielgatis@gmail.com",
+            "name": "Syed Usama Ahmad",
+            "url": "https://github.com/syedusama5556",
+            "email": "syedusama5556@gmail.com",
         },
         license_info={
             "name": "MIT License",
-            "url": "https://github.com/danielgatis/rembg/blob/main/LICENSE.txt",
+            "url": "https://github.com/syedusama5556/removebg_infusiblecoder/blob/main/LICENSE.txt",
         },
         openapi_tags=tags_metadata,
     )

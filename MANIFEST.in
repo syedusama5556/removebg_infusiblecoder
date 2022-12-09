@@ -7,4 +7,4 @@ include requirements.txt
 include requirements-gpu.txt
 
 include versioneer.py
-include rembg/_version.py
+include removebg_infusiblecoder/_version.py

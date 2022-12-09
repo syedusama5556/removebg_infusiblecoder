@@ -26,7 +26,7 @@ Input images to reproduce.
 **OS Version:**
 iOS 22
 
-**Rembg version:**
+**removebg_infusiblecoder version:**
 v2.0.21
 
 **Additional context**

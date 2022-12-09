@@ -15,17 +15,17 @@ RUN add-apt-repository ppa:deadsnakes/ppa
 RUN apt install -y python3.9 python3.9-distutils
 RUN curl https://bootstrap.pypa.io/get-pip.py | python3.9
 
-WORKDIR /rembg
+WORKDIR /removebg_infusiblecoder
 
 COPY . .
 RUN python3.9 -m pip install .[gpu]
 
 RUN mkdir -p ~/.u2net
-RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx -O ~/.u2net/u2netp.onnx
-RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx -O ~/.u2net/u2net.onnx
-RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_human_seg.onnx -O ~/.u2net/u2net_human_seg.onnx
-RUN wget https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_cloth_seg.onnx -O ~/.u2net/u2net_cloth_seg.onnx
+RUN wget https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2netp.onnx -O ~/.u2net/u2netp.onnx
+RUN wget https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net.onnx -O ~/.u2net/u2net.onnx
+RUN wget https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net_human_seg.onnx -O ~/.u2net/u2net_human_seg.onnx
+RUN wget https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net_cloth_seg.onnx -O ~/.u2net/u2net_cloth_seg.onnx
 
 EXPOSE 5000
-ENTRYPOINT ["rembg"]
+ENTRYPOINT ["removebg_infusiblecoder"]
 CMD ["--help"]

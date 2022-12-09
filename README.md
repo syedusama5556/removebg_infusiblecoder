@@ -1,38 +1,38 @@
-# Rembg
+# removebg_infusiblecoder
 
-[![Downloads](https://pepy.tech/badge/rembg)](https://pepy.tech/project/rembg)
-[![Downloads](https://pepy.tech/badge/rembg/month)](https://pepy.tech/project/rembg/month)
-[![Downloads](https://pepy.tech/badge/rembg/week)](https://pepy.tech/project/rembg/week)
+[![Downloads](https://pepy.tech/badge/removebg_infusiblecoder)](https://pepy.tech/project/removebg_infusiblecoder)
+[![Downloads](https://pepy.tech/badge/removebg_infusiblecoder/month)](https://pepy.tech/project/removebg_infusiblecoder/month)
+[![Downloads](https://pepy.tech/badge/removebg_infusiblecoder/week)](https://pepy.tech/project/removebg_infusiblecoder/week)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://img.shields.io/badge/License-MIT-blue.svg)
-[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/KenjieDec/RemBG)
+[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/KenjieDec/removebg_infusiblecoder)
 
-Rembg is a tool to remove images background.
+removebg_infusiblecoder is a tool to remove images background.
 
 <p style="display: flex;align-items: center;justify-content: center;">
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/car-1.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/car-1.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/car-2.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/car-2.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/car-3.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/car-3.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-1.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-1.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-2.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-2.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-3.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-3.out.png" width="100" />
 </p>
 
 <p style="display: flex;align-items: center;justify-content: center;">
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/animal-1.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/animal-1.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/animal-2.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/animal-2.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/animal-3.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/animal-3.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-1.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-1.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-2.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-2.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-3.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-3.out.png" width="100" />
 </p>
 
 <p style="display: flex;align-items: center;justify-content: center;">
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/girl-1.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/girl-1.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/girl-2.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/girl-2.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/girl-3.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/danielgatis/rembg/master/examples/girl-3.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-1.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-1.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-2.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-2.out.png" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-3.jpg" width="100" />
+  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-3.out.png" width="100" />
 </p>
 
 **If this project has helped you, please consider making a [donation](https://www.buymeacoffee.com/danielgatis).**
@@ -48,20 +48,20 @@ python: >3.7, <3.11
 CPU support:
 
 ```bash
-pip install rembg
+pip install removebg_infusiblecoder
 ```
 
 GPU support:
 
 ```bash
-pip install rembg[gpu]
+pip install removebg_infusiblecoder[gpu]
 ```
 
 ## Usage as a cli
 
-After the installation step you can use rembg just typing `rembg` in your terminal window.
+After the installation step you can use removebg_infusiblecoder just typing `removebg_infusiblecoder` in your terminal window.
 
-The `rembg` command has 3 subcommands, one for each input type:
+The `removebg_infusiblecoder` command has 3 subcommands, one for each input type:
 - `i` for files
 - `p` for folders
 - `s` for http server
@@ -69,67 +69,67 @@ The `rembg` command has 3 subcommands, one for each input type:
 You can get help about the main command using:
 
 ```
-rembg --help
+removebg_infusiblecoder --help
 ```
 
 As well, about all the subcommands using:
 
 ```
-rembg <COMMAND> --help
+removebg_infusiblecoder <COMMAND> --help
 ```
 
-### rembg `i`
+### removebg_infusiblecoder `i`
 
 Used when input and output are files.
 
 Remove the background from a remote image
 
 ```
-curl -s http://input.png | rembg i > output.png
+curl -s http://input.png | removebg_infusiblecoder i > output.png
 ```
 
 Remove the background from a local file
 
 ```
-rembg i path/to/input.png path/to/output.png
+removebg_infusiblecoder i path/to/input.png path/to/output.png
 ```
 
 Remove the background specifying a model
 
 ```
-rembg -m u2netp i path/to/input.png path/to/output.png
+removebg_infusiblecoder -m u2netp i path/to/input.png path/to/output.png
 ```
 
 Remove the background returning only the mask
 
 ```
-rembg -om i path/to/input.png path/to/output.png
+removebg_infusiblecoder -om i path/to/input.png path/to/output.png
 ```
 
 
 Remove the background applying an alpha matting
 
 ```
-rembg -a i path/to/input.png path/to/output.png
+removebg_infusiblecoder -a i path/to/input.png path/to/output.png
 ```
 
-### rembg `p`
+### removebg_infusiblecoder `p`
 
 Used when input and output are folders.
 
 Remove the background from all images in a folder
 
 ```
-rembg p path/to/input path/to/output
+removebg_infusiblecoder p path/to/input path/to/output
 ```
 
 Same as before, but watching for new/changed files to process
 
 ```
-rembg p -w path/to/input path/to/output
+removebg_infusiblecoder p -w path/to/input path/to/output
 ```
 
-### rembg `s`
+### removebg_infusiblecoder `s`
 
 Used to start http server.
 
@@ -152,7 +152,7 @@ curl -s -F file=@/path/to/input.jpg "http://localhost:5000"  -o output.png
 Input and output as bytes
 
 ```python
-from rembg import remove
+from removebg_infusiblecoder import remove
 
 input_path = 'input.png'
 output_path = 'output.png'
@@ -167,7 +167,7 @@ with open(input_path, 'rb') as i:
 Input and output as a PIL image
 
 ```python
-from rembg import remove
+from removebg_infusiblecoder import remove
 from PIL import Image
 
 input_path = 'input.png'
@@ -181,7 +181,7 @@ output.save(output_path)
 Input and output as a numpy array
 
 ```python
-from rembg import remove
+from removebg_infusiblecoder import remove
 import cv2
 
 input_path = 'input.png'
@@ -196,7 +196,7 @@ How to iterate over files in a performatic way
 
 ```python
 from pathlib import Path
-from rembg import remove, new_session
+from removebg_infusiblecoder import remove, new_session
 
 session = new_session()
 
@@ -213,12 +213,12 @@ for file in Path('path/to/folder').glob('*.png'):
 
 ## Usage as a docker
 
-Just replace the `rembg` command for `docker run danielgatis/rembg`.
+Just replace the `removebg_infusiblecoder` command for `docker run syedusama5556/removebg_infusiblecoder`.
 
 Try this:
 
 ```
-docker run danielgatis/rembg i path/to/input.png path/to/output.png
+docker run syedusama5556/removebg_infusiblecoder i path/to/input.png path/to/output.png
 ```
 
 ## Models
@@ -227,11 +227,11 @@ All models are downloaded and saved in the user home folder in the `.u2net` dire
 
 The available models are:
 
--   u2net ([download](https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for general use cases.
--   u2netp ([download](https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2netp.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A lightweight version of u2net model.
--   u2net_human_seg ([download](https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_human_seg.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for human segmentation.
--   u2net_cloth_seg ([download](https://github.com/danielgatis/rembg/releases/download/v0.0.0/u2net_cloth_seg.onnx), [source](https://github.com/levindabhi/cloth-segmentation)): A pre-trained model for Cloths Parsing from human portrait. Here clothes are parsed into 3 category: Upper body, Lower body and Full body.
--   silueta ([download](https://github.com/danielgatis/rembg/releases/download/v0.0.0/silueta.onnx), [source](https://github.com/xuebinqin/U-2-Net/issues/295)): Same as u2net but the size is reduced to 43Mb.
+-   u2net ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for general use cases.
+-   u2netp ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2netp.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A lightweight version of u2net model.
+-   u2net_human_seg ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net_human_seg.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for human segmentation.
+-   u2net_cloth_seg ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net_cloth_seg.onnx), [source](https://github.com/levindabhi/cloth-segmentation)): A pre-trained model for Cloths Parsing from human portrait. Here clothes are parsed into 3 category: Upper body, Lower body and Full body.
+-   silueta ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/silueta.onnx), [source](https://github.com/xuebinqin/U-2-Net/issues/295)): Same as u2net but the size is reduced to 43Mb.
 
 ### How to train your own model
 
@@ -261,6 +261,6 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 
 ## License
 
-Copyright (c) 2020-present [Daniel Gatis](https://github.com/danielgatis)
+Copyright (c) 2022-present [Syed Usama Ahmad](https://github.com/syedusama5556)
 
 Licensed under [MIT License](./LICENSE.txt)
