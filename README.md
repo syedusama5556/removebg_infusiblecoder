@@ -4,7 +4,6 @@
 [![Downloads](https://pepy.tech/badge/removebg_infusiblecoder/month)](https://pepy.tech/project/removebg_infusiblecoder/month)
 [![Downloads](https://pepy.tech/badge/removebg_infusiblecoder/week)](https://pepy.tech/project/removebg_infusiblecoder/week)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://img.shields.io/badge/License-MIT-blue.svg)
-[![Hugging Face Spaces](https://img.shields.io/badge/🤗%20Hugging%20Face-Spaces-blue)](https://huggingface.co/spaces/KenjieDec/removebg_infusiblecoder)
 
 removebg_infusiblecoder is a tool to remove images background.
 
@@ -35,7 +34,7 @@ removebg_infusiblecoder is a tool to remove images background.
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-3.out.png" width="100" />
 </p>
 
-**If this project has helped you, please consider making a [donation](https://www.buymeacoffee.com/danielgatis).**
+**If this project has helped you, please consider making a [donation](https://www.buymeacoffee.com/syedusama56).**
 
 ## Requirements
 
@@ -257,7 +256,7 @@ https://github.com/danielgatis/rembg/issues/193#issuecomment-1055534289
 
 Liked some of my work? Buy me a coffee (or more likely a beer)
 
-<a href="https://www.buymeacoffee.com/danielgatis" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
+<a href="https://www.buymeacoffee.com/syedusama56" target="_blank"><img src="https://bmc-cdn.nyc3.digitaloceanspaces.com/BMC-button-images/custom_images/orange_img.png" alt="Buy Me A Coffee" style="height: auto !important;width: auto !important;"></a>
 
 ## License
 
