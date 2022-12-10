@@ -10,28 +10,16 @@ removebg_infusiblecoder is a tool to remove images background.
 <p style="display: flex;align-items: center;justify-content: center;">
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-1.jpg" width="100" />
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-1.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-2.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-2.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-3.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-3.out.png" width="100" />
 </p>
 
 <p style="display: flex;align-items: center;justify-content: center;">
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-1.jpg" width="100" />
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-1.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-2.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-2.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-3.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/animal-3.out.png" width="100" />
 </p>
 
 <p style="display: flex;align-items: center;justify-content: center;">
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-1.jpg" width="100" />
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-1.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-2.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-2.out.png" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-3.jpg" width="100" />
-  <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/girl-3.out.png" width="100" />
 </p>
 
 **If this project has helped you, please consider making a [donation](https://www.buymeacoffee.com/syedusama56).**
@@ -47,13 +35,13 @@ python: >3.7, <3.11
 CPU support:
 
 ```bash
-pip install removebg_infusiblecoder
+pip install removebg-infusiblecoder
 ```
 
 GPU support:
 
 ```bash
-pip install removebg_infusiblecoder[gpu]
+pip install removebg-infusiblecoder[gpu]
 ```
 
 ## Usage as a cli
