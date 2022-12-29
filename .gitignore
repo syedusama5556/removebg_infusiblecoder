@@ -1,5 +1,6 @@
 # general things to ignore
 build/
+weights/
 dist/
 .venv/
 .direnv/

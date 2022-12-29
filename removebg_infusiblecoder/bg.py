@@ -186,37 +186,26 @@ def remove(
 
 def upscaleimg(
     data: Union[bytes, PILImage, np.ndarray],
-    scale_size: int = 2,
+    scale_size: int = 4,
 ) -> Union[bytes, PILImage, np.ndarray]:
 
-    if isinstance(data, PILImage):
-        return_type = ReturnType.PILLOW
-        img = data
-    elif isinstance(data, bytes):
+    if isinstance(data, bytes):
         return_type = ReturnType.BYTES
-        img = Image.open(io.BytesIO(data))
-    elif isinstance(data, np.ndarray):
-        return_type = ReturnType.NDARRAY
-        img = Image.fromarray(data)
+        img = Image.open(io.BytesIO(data)).convert('RGB')
     else:
         raise ValueError("Input type {} is not supported.".format(type(data)))
 
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
 
-    model = RealESRGAN(device, scale=scale_size)
+    model = RealESRGAN(device, scale_size)
 
-    model.load_weights('weights/RealESRGAN_x4.pth', download=True)
+    weightspath = 'weights/RealESRGAN_x4.pth' if scale_size == 4 else 'weights/RealESRGAN_x8.pth'
 
-    path_to_image = img
-    image = Image.open(path_to_image).convert('RGB')
+    model.load_weights(weightspath, download=True)
 
-    cutout = model.predict(image)
+    print('working till here '+str(scale_size))
 
-    if ReturnType.PILLOW == return_type:
-        return cutout
-
-    if ReturnType.NDARRAY == return_type:
-        return np.asarray(cutout)
+    cutout = model.predict(img)
 
     bio = io.BytesIO()
     cutout.save(bio, "PNG")

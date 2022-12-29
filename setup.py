@@ -14,7 +14,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="removebg_infusiblecoder",
-    description="Remove image background",
+    description="Remove image background and Image Upscaler",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/syedusama5556/removebg_infusiblecoder",
@@ -34,7 +34,7 @@ setup(
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
     ],
-    keywords="remove, background, u2net",
+    keywords="remove, background, u2net, image, upscaler",
     packages=["removebg_infusiblecoder"],
     python_requires=">3.7, <3.11",
     install_requires=[
@@ -56,6 +56,9 @@ setup(
         "tqdm~=4.64.1",
         "uvicorn~=0.20.0",
         "watchdog~=2.1.9",
+        "torch>=1.7",
+        "torchvision>=0.8.0",
+        "huggingface-hub"
     ],
     entry_points={
         "console_scripts": [
@@ -65,6 +68,6 @@ setup(
     extras_require={
         "gpu": ["onnxruntime-gpu~=1.13.1"],
     },
-    version='0.0.2',
+    version='0.0.3',
 
 )

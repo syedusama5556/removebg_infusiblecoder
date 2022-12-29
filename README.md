@@ -5,7 +5,7 @@
 [![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/week)](https://pepy.tech/project/removebg_infusiblecoder/week)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://img.shields.io/badge/License-MIT-blue.svg)
 
-removebg_infusiblecoder is a tool to remove images background.
+removebg_infusiblecoder is a tool to remove images background and upscale images using RealESRGAN.
 
 <p style="display: flex;align-items: center;justify-content: center;">
   <img src="https://raw.githubusercontent.com/syedusama5556/removebg_infusiblecoder/master/examples/car-1.jpg" width="100" />
@@ -33,6 +33,10 @@ python: >3.7, <3.11
 ## Installation
 
 CPU support:
+
+```bash
+pip install torch==1.9.1+cpu torchvision==0.10.1+cpu -f https://download.pytorch.org/whl/torch_stable.html
+```
 
 ```bash
 pip install removebg-infusiblecoder
@@ -129,6 +133,12 @@ curl -s "http://localhost:5000/?url=http://input.png" -o output.png
 ```
 
 Remove the background from an uploaded image
+
+```
+curl -s -F file=@/path/to/input.jpg "http://localhost:5000"  -o output.png
+```
+
+Upscale image from an uploaded image
 
 ```
 curl -s -F file=@/path/to/input.jpg "http://localhost:5000"  -o output.png

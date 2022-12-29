@@ -202,7 +202,8 @@ def p(
                 each_output.write_bytes(
                     cast(
                         bytes,
-                        remove(each_input.read_bytes(), session=session, **kwargs),
+                        remove(each_input.read_bytes(),
+                               session=session, **kwargs),
                     )
                 )
 
@@ -227,7 +228,8 @@ def p(
         class EventHandler(FileSystemEventHandler):
             def on_any_event(self, event: FileSystemEvent) -> None:
                 if not (
-                    event.is_directory or event.event_type in ["deleted", "closed"]
+                    event.is_directory or event.event_type in [
+                        "deleted", "closed"]
                 ):
                     process(pathlib.Path(event.src_path))
 
@@ -320,7 +322,8 @@ def s(port: int, log_level: str, threads: int) -> None:
                 description="Model to use when processing image",
             ),
             a: bool = Query(default=False, description="Enable Alpha Matting"),
-            scale: bool = Query(default=False, description="Select Scale Ampunt"),
+            scale: bool = Query(
+                default=False, description="Select Scale Ampunt"),
             af: int = Query(
                 default=240,
                 ge=0,
@@ -347,6 +350,17 @@ def s(port: int, log_level: str, threads: int) -> None:
             self.ae = ae
             self.om = om
             self.ppm = ppm
+
+    class CommonQueryParamsUpscaler:
+        def __init__(
+            self,
+
+            scale: int = Query(
+                default=4,
+                description="Select Scale Amount 4 for 4x or 8 for 8x",
+            ),
+        ):
+            self.scale = scale
 
     class CommonQueryPostParams:
         def __init__(
@@ -399,8 +413,7 @@ def s(port: int, log_level: str, threads: int) -> None:
             media_type="image/png",
         )
 
-
-    def img_upscaled(content: bytes, commons: CommonQueryParams) -> Response:
+    def img_upscaled(content: bytes, commons: CommonQueryParamsUpscaler) -> Response:
         return Response(
             upscaleimg(
                 content,
@@ -449,7 +462,6 @@ def s(port: int, log_level: str, threads: int) -> None:
     ):
         return await asyncify(im_without_bg)(file, commons)
 
-
     @app.post(
         path="/upscale",
         tags=["Upscale image"],
@@ -461,7 +473,7 @@ def s(port: int, log_level: str, threads: int) -> None:
             default=...,
             description="Image file (byte stream) that has to be processed.",
         ),
-        commons: CommonQueryPostParams = Depends(),
+        commons: CommonQueryParamsUpscaler = Depends(),
     ):
         return await asyncify(img_upscaled)(file, commons)
 
