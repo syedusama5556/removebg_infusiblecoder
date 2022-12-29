@@ -65,6 +65,6 @@ setup(
     extras_require={
         "gpu": ["onnxruntime-gpu~=1.13.1"],
     },
-    version='0.0.2',
+    version='0.0.4',
 
 )

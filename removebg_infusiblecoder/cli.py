@@ -17,7 +17,7 @@ from watchdog.events import FileSystemEvent, FileSystemEventHandler
 from watchdog.observers import Observer
 
 from . import _version
-from .bg import remove
+from .bg import remove, remove_return_base64
 from .session_base import BaseSession
 from .session_factory import new_session
 
@@ -397,6 +397,32 @@ def s(port: int, log_level: str, threads: int) -> None:
             media_type="image/png",
         )
 
+
+    def im_without_bg_base64(content: bytes, commons: CommonQueryParams) -> Response:
+
+        x =   remove_return_base64(
+                content,
+                session=sessions.setdefault(
+                    commons.model.value, new_session(commons.model.value)
+                ),
+                alpha_matting=commons.a,
+                alpha_matting_foreground_threshold=commons.af,
+                alpha_matting_background_threshold=commons.ab,
+                alpha_matting_erode_size=commons.ae,
+                only_mask=commons.om,
+                post_process_mask=commons.ppm,
+            )
+
+        x = x.replace("b'", "")
+        x = x[:x.rindex("'")]
+
+        return Response(
+
+            '{ "imagebase64":"'+x+'", "status":true}'
+           ,
+            media_type="application/json",
+        )
+
     @app.on_event("startup")
     def startup():
         if threads is not None:
@@ -436,5 +462,21 @@ def s(port: int, log_level: str, threads: int) -> None:
         commons: CommonQueryPostParams = Depends(),
     ):
         return await asyncify(im_without_bg)(file, commons)
+        
+    @app.post(
+        path="/base",
+        tags=["Background Removal"],
+        summary="Remove from Stream and return base64",
+        description="Removes the background from an image sent within the request itself.",
+    )
+    async def post_index(
+        file: bytes = File(
+            default=...,
+            description="Image file (byte stream) that has to be processed.",
+        ),
+        commons: CommonQueryPostParams = Depends(),
+    ):
+        return await asyncify(im_without_bg_base64)(file, commons)
+        
 
     uvicorn.run(app, host="0.0.0.0", port=port, log_level=log_level)
