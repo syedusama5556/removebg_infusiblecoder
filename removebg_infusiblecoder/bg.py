@@ -2,6 +2,11 @@ import io
 from enum import Enum
 from typing import List, Optional, Union
 
+import torch
+from PIL import Image
+import numpy as np
+from RealESRGAN import RealESRGAN
+
 import numpy as np
 from cv2 import (
     BORDER_DEFAULT,
@@ -54,7 +59,8 @@ def alpha_matting_cutout(
         )
 
     is_foreground = binary_erosion(is_foreground, structure=structure)
-    is_background = binary_erosion(is_background, structure=structure, border_value=1)
+    is_background = binary_erosion(
+        is_background, structure=structure, border_value=1)
 
     trimap = np.full(mask.shape, dtype=np.uint8, fill_value=128)
     trimap[is_foreground] = 255
@@ -101,8 +107,10 @@ def post_process(mask: np.ndarray) -> np.ndarray:
         mask: Binary Numpy Mask
     """
     mask = morphologyEx(mask, MORPH_OPEN, kernel)
-    mask = GaussianBlur(mask, (5, 5), sigmaX=2, sigmaY=2, borderType=BORDER_DEFAULT)
-    mask = np.where(mask < 127, 0, 255).astype(np.uint8)  # convert again to binary
+    mask = GaussianBlur(mask, (5, 5), sigmaX=2, sigmaY=2,
+                        borderType=BORDER_DEFAULT)
+    mask = np.where(mask < 127, 0, 255).astype(
+        np.uint8)  # convert again to binary
     return mask
 
 
@@ -162,6 +170,47 @@ def remove(
     cutout = img
     if len(cutouts) > 0:
         cutout = get_concat_v_multi(cutouts)
+
+    if ReturnType.PILLOW == return_type:
+        return cutout
+
+    if ReturnType.NDARRAY == return_type:
+        return np.asarray(cutout)
+
+    bio = io.BytesIO()
+    cutout.save(bio, "PNG")
+    bio.seek(0)
+
+    return bio.read()
+
+
+def upscaleimg(
+    data: Union[bytes, PILImage, np.ndarray],
+    scale_size: int = 2,
+) -> Union[bytes, PILImage, np.ndarray]:
+
+    if isinstance(data, PILImage):
+        return_type = ReturnType.PILLOW
+        img = data
+    elif isinstance(data, bytes):
+        return_type = ReturnType.BYTES
+        img = Image.open(io.BytesIO(data))
+    elif isinstance(data, np.ndarray):
+        return_type = ReturnType.NDARRAY
+        img = Image.fromarray(data)
+    else:
+        raise ValueError("Input type {} is not supported.".format(type(data)))
+
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+
+    model = RealESRGAN(device, scale=scale_size)
+
+    model.load_weights('weights/RealESRGAN_x4.pth', download=True)
+
+    path_to_image = img
+    image = Image.open(path_to_image).convert('RGB')
+
+    cutout = model.predict(image)
 
     if ReturnType.PILLOW == return_type:
         return cutout

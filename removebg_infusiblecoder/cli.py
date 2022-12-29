@@ -17,7 +17,7 @@ from watchdog.events import FileSystemEvent, FileSystemEventHandler
 from watchdog.observers import Observer
 
 from . import _version
-from .bg import remove
+from .bg import remove, upscaleimg
 from .session_base import BaseSession
 from .session_factory import new_session
 
@@ -320,6 +320,7 @@ def s(port: int, log_level: str, threads: int) -> None:
                 description="Model to use when processing image",
             ),
             a: bool = Query(default=False, description="Enable Alpha Matting"),
+            scale: bool = Query(default=False, description="Select Scale Ampunt"),
             af: int = Query(
                 default=240,
                 ge=0,
@@ -340,6 +341,7 @@ def s(port: int, log_level: str, threads: int) -> None:
         ):
             self.model = model
             self.a = a
+            self.scale = scale
             self.af = af
             self.ab = ab
             self.ae = ae
@@ -397,6 +399,16 @@ def s(port: int, log_level: str, threads: int) -> None:
             media_type="image/png",
         )
 
+
+    def img_upscaled(content: bytes, commons: CommonQueryParams) -> Response:
+        return Response(
+            upscaleimg(
+                content,
+                scale_size=commons.scale,
+            ),
+            media_type="image/png",
+        )
+
     @app.on_event("startup")
     def startup():
         if threads is not None:
@@ -436,5 +448,21 @@ def s(port: int, log_level: str, threads: int) -> None:
         commons: CommonQueryPostParams = Depends(),
     ):
         return await asyncify(im_without_bg)(file, commons)
+
+
+    @app.post(
+        path="/upscale",
+        tags=["Upscale image"],
+        summary="Upscale image from Stream",
+        description="Upscale image sent within the request itself.",
+    )
+    async def post_index(
+        file: bytes = File(
+            default=...,
+            description="Image file (byte stream) that has to be processed.",
+        ),
+        commons: CommonQueryPostParams = Depends(),
+    ):
+        return await asyncify(img_upscaled)(file, commons)
 
     uvicorn.run(app, host="0.0.0.0", port=port, log_level=log_level)
