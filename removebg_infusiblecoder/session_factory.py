@@ -10,6 +10,7 @@ import pooch
 
 from .session_base import BaseSession
 from .session_cloth import ClothSession
+from .session_dis import DisSession
 from .session_simple import SimpleSession
 
 
@@ -39,6 +40,10 @@ def new_session(model_name: str = "u2net") -> BaseSession:
             "https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/silueta.onnx"
         )
         session_class = SimpleSession
+    elif model_name == "isnet-general-use":
+        md5 = "fc16ebd8b0c10d971d3513d564d01e29"
+        url = "https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/isnet-general-use.onnx"
+        session_class = DisSession
 
     u2net_home = os.getenv(
         "U2NET_HOME", os.path.join(os.getenv("XDG_DATA_HOME", "~"), ".u2net")

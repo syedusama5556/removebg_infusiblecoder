@@ -1,12 +1,18 @@
+import base64
+import io
 import pathlib
 import sys
 import time
 from enum import Enum
 from typing import IO, cast
 
+from PIL import Image
+from PIL.Image import Image as PILImage
+
 import aiohttp
 import click
 import filetype
+import requests
 import uvicorn
 from asyncer import asyncify
 from fastapi import Depends, FastAPI, File, Form, Query
@@ -34,7 +40,14 @@ def main() -> None:
     "--model",
     default="u2net",
     type=click.Choice(
-        ["u2net", "u2netp", "u2net_human_seg", "u2net_cloth_seg", "silueta"]
+        [
+            "u2net",
+            "u2netp",
+            "u2net_human_seg",
+            "u2net_cloth_seg",
+            "silueta",
+            "isnet-general-use",
+        ]
     ),
     show_default=True,
     show_choices=True,
@@ -103,8 +116,14 @@ def i(model: str, input: IO, output: IO, **kwargs) -> None:
     "--model",
     default="u2net",
     type=click.Choice(
-        ["u2net", "u2netp", "u2net_human_seg", "u2net_cloth_seg", "silueta"]
-    ),
+        [
+            "u2net",
+            "u2netp",
+            "u2net_human_seg",
+            "u2net_cloth_seg",
+            "silueta",
+            "isnet-general-use",
+        ]),
     show_default=True,
     show_choices=True,
     help="model name",
@@ -202,7 +221,8 @@ def p(
                 each_output.write_bytes(
                     cast(
                         bytes,
-                        remove(each_input.read_bytes(), session=session, **kwargs),
+                        remove(each_input.read_bytes(),
+                               session=session, **kwargs),
                     )
                 )
 
@@ -227,7 +247,8 @@ def p(
         class EventHandler(FileSystemEventHandler):
             def on_any_event(self, event: FileSystemEvent) -> None:
                 if not (
-                    event.is_directory or event.event_type in ["deleted", "closed"]
+                    event.is_directory or event.event_type in [
+                        "deleted", "closed"]
                 ):
                     process(pathlib.Path(event.src_path))
 
@@ -311,6 +332,7 @@ def s(port: int, log_level: str, threads: int) -> None:
         u2net_human_seg = "u2net_human_seg"
         u2net_cloth_seg = "u2net_cloth_seg"
         silueta = "silueta"
+        isnet_general_use = "isnet-general-use"
 
     class CommonQueryParams:
         def __init__(
@@ -397,29 +419,57 @@ def s(port: int, log_level: str, threads: int) -> None:
             media_type="image/png",
         )
 
-
     def im_without_bg_base64(content: bytes, commons: CommonQueryParams) -> Response:
 
-        x =   remove_return_base64(
-                content,
-                session=sessions.setdefault(
-                    commons.model.value, new_session(commons.model.value)
-                ),
-                alpha_matting=commons.a,
-                alpha_matting_foreground_threshold=commons.af,
-                alpha_matting_background_threshold=commons.ab,
-                alpha_matting_erode_size=commons.ae,
-                only_mask=commons.om,
-                post_process_mask=commons.ppm,
-            )
+        x = remove_return_base64(
+            content,
+            session=sessions.setdefault(
+                commons.model.value, new_session(commons.model.value)
+            ),
+            alpha_matting=commons.a,
+            alpha_matting_foreground_threshold=commons.af,
+            alpha_matting_background_threshold=commons.ab,
+            alpha_matting_erode_size=commons.ae,
+            only_mask=commons.om,
+            post_process_mask=commons.ppm,
+        )
 
         x = x.replace("b'", "")
         x = x[:x.rindex("'")]
 
         return Response(
 
-            '{ "imagebase64":"'+x+'", "status":true}'
-           ,
+            '{ "imagebase64":"'+x+'", "status":true}',
+            media_type="application/json",
+        )
+
+    import tempfile
+
+    def write_image_bytes(image_bytes):
+        # Create a temporary file for writing in binary mode
+        with tempfile.NamedTemporaryFile(suffix='.png', delete=False) as temp_file:
+            # Write the image bytes to the temporary file
+            temp_file.write(image_bytes)
+
+            # Return the path to the temporary file
+            return temp_file.name
+
+    def im_without_bg_base64_ext(content: bytes) -> Response:
+
+        file_data = open(write_image_bytes(content), "rb")
+        mask_type = "rgba"  # rgba,green,blur,map
+        r = requests.post("https://www.taskswithcode.com/salient_object_detection_api/",
+                          data={"mask": mask_type}, files={"test": file_data})
+        encoded_string = base64.b64encode(r.content)
+
+        x = str(encoded_string)
+        # return Response(
+        #     r.content,
+        #     media_type="image/png",
+        # )
+        return Response(
+
+            '{ "imagebase64":"'+x+'", "status":true}',
             media_type="application/json",
         )
 
@@ -461,8 +511,8 @@ def s(port: int, log_level: str, threads: int) -> None:
         ),
         commons: CommonQueryPostParams = Depends(),
     ):
-        return await asyncify(im_without_bg)(file, commons)
-        
+        return await asyncify(im_without_bg)(file, commons)  # type: ignore
+
     @app.post(
         path="/base",
         tags=["Background Removal"],
@@ -477,6 +527,20 @@ def s(port: int, log_level: str, threads: int) -> None:
         commons: CommonQueryPostParams = Depends(),
     ):
         return await asyncify(im_without_bg_base64)(file, commons)
-        
+
+    @app.post(
+        path="/base_ext",
+        tags=["Background Removal External"],
+        summary="Remove from Stream and return base64",
+        description="Removes the background from an image sent within the request itself.",
+    )
+    async def post_index(
+        file: bytes = File(
+            default=...,
+            description="Image file (byte stream) that has to be processed.",
+        ),
+
+    ):
+        return await asyncify(im_without_bg_base64_ext)(file)
 
     uvicorn.run(app, host="0.0.0.0", port=port, log_level=log_level)
