@@ -1,8 +1,8 @@
 # removebg_infusiblecoder
-![PyPI](https://img.shields.io/pypi/v/removebg_infusiblecoder)
-[![Downloads](https://pepy.tech/badge/removebg-infusiblecoder)](https://pepy.tech/project/removebg_infusiblecoder)
-[![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/month)](https://pepy.tech/project/removebg_infusiblecoder/month)
-[![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/week)](https://pepy.tech/project/removebg_infusiblecoder/week)
+![PyPI](https://img.shields.io/pypi/v/removebg_infusiblecoder)(https://pypi.org/project/removebg-infusiblecoder/)
+[![Downloads](https://pepy.tech/badge/removebg-infusiblecoder)](https://pypi.org/project/removebg-infusiblecoder/)
+[![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/month)](https://pypi.org/project/removebg-infusiblecoder/)
+[![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/week)](https://pypi.org/project/removebg-infusiblecoder/)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg)](https://img.shields.io/badge/License-MIT-blue.svg)
 
 removebg_infusiblecoder is a tool to remove images background.
