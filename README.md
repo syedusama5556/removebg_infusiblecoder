@@ -1,5 +1,5 @@
 # removebg_infusiblecoder
-
+![PyPI](https://img.shields.io/pypi/v/removebg_infusiblecoder)
 [![Downloads](https://pepy.tech/badge/removebg-infusiblecoder)](https://pepy.tech/project/removebg_infusiblecoder)
 [![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/month)](https://pepy.tech/project/removebg_infusiblecoder/month)
 [![Downloads](https://pepy.tech/badge/removebg-infusiblecoder/week)](https://pepy.tech/project/removebg_infusiblecoder/week)
