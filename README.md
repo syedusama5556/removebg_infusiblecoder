@@ -214,6 +214,7 @@ All models are downloaded and saved in the user home folder in the `.u2net` dire
 
 The available models are:
 
+-   modnet ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/modnet_photographic_portrait_matting.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for general use cases modnet.
 -   isnet-general-use ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/isnet-general-use.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for general use cases isnet-general-use.
 -   u2net ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A pre-trained model for general use cases.
 -   u2netp ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2netp.onnx), [source](https://github.com/xuebinqin/U-2-Net)): A lightweight version of u2net model.

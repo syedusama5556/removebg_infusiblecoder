@@ -47,6 +47,7 @@ def main() -> None:
             "u2net_cloth_seg",
             "silueta",
             "isnet-general-use",
+            "modnet",
         ]
     ),
     show_default=True,
@@ -123,6 +124,7 @@ def i(model: str, input: IO, output: IO, **kwargs) -> None:
             "u2net_cloth_seg",
             "silueta",
             "isnet-general-use",
+            "modnet",
         ]),
     show_default=True,
     show_choices=True,
@@ -333,6 +335,7 @@ def s(port: int, log_level: str, threads: int) -> None:
         u2net_cloth_seg = "u2net_cloth_seg"
         silueta = "silueta"
         isnet_general_use = "isnet-general-use"
+        modnet = "modnet"
 
     class CommonQueryParams:
         def __init__(
