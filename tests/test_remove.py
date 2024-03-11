@@ -1,6 +1,5 @@
 from io import BytesIO
 from pathlib import Path
-
 from imagehash import phash as hash_img
 from PIL import Image
 
