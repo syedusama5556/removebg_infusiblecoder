@@ -1,15 +1,61 @@
-import versioneer
-from setuptools import find_packages, setup
 import os
 import pathlib
 import sys
 
 sys.path.append(os.path.dirname(__file__))
+from setuptools import find_packages, setup
 
+import versioneer
 
 here = pathlib.Path(__file__).parent.resolve()
 
 long_description = (here / "README.md").read_text(encoding="utf-8")
+
+install_requires = [
+    "jsonschema",
+    "numpy",
+    "onnxruntime",
+    "opencv-python-headless",
+    "pillow",
+    "pooch",
+    "pymatting",
+    "scikit-image",
+    "scipy",
+    "tqdm",
+]
+
+extras_require = {
+    "dev": [
+        "bandit",
+        "black",
+        "flake8",
+        "imagehash",
+        "isort",
+        "mypy",
+        "pytest",
+        "setuptools",
+        "twine",
+        "wheel",
+    ],
+    "gpu": ["onnxruntime-gpu"],
+    "cli": [
+        "aiohttp",
+        "asyncer",
+        "click",
+        "fastapi",
+        "filetype",
+        "gradio",
+        "python-multipart",
+        "uvicorn",
+        "watchdog",
+    ],
+}
+
+entry_points = {
+    "console_scripts": [
+        "rembg=rembg.cli:main",
+    ],
+}
 
 
 setup(
@@ -33,38 +79,16 @@ setup(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
     ],
     keywords="remove, background, u2net",
-    packages=["removebg_infusiblecoder"],
-    python_requires=">3.7, <3.11",
-    install_requires=[
-        "aiohttp>=3.8.1",
-        "asyncer>=0.0.2",
-        "click>=8.1.3",
-        "fastapi>=0.92.0",
-        "filetype>=1.2.0",
-        "pooch>=1.6.0",
-        "imagehash>=4.3.1",
-        "numpy>=1.23.5",
-        "onnxruntime>=1.13.1",
-        "opencv-python-headless>=4.6.0.66",
-        "pillow>=9.3.0",
-        "pymatting>=1.1.8",
-        "python-multipart>=0.0.5",
-        "scikit-image>=0.19.3",
-        "scipy>=1.9.3",
-        "tqdm>=4.64.1",
-        "uvicorn>=0.20.0",
-        "watchdog>=2.1.9",
-    ],
-    entry_points={
-        "console_scripts": [
-            "removebg_infusiblecoder=removebg_infusiblecoder.cli:main",
-        ],
-    },
-    extras_require={
-        "gpu": ["onnxruntime-gpu>=1.13.1"],
-    },
-    version='0.0.6',
-
+    python_requires=">=3.8, <3.13",
+    packages=find_packages(),
+    install_requires=install_requires,
+    entry_points=entry_points,
+    extras_require=extras_require,
+    version=versioneer.get_version(),
+    cmdclass=versioneer.get_cmdclass(),
 )
+ 

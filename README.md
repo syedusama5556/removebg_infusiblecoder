@@ -35,23 +35,26 @@ python: >3.7, <3.11
 CPU support:
 
 ```bash
-pip install removebg-infusiblecoder
+pip install removebg-infusiblecoder # for library
+pip install removebg-infusiblecoder[cli] # for library + cli
 ```
 
 GPU support:
 
-```bash
-pip install removebg-infusiblecoder[gpu]
-```
 
+```bash
+pip install removebg-infusiblecoder[gpu] # for library
+pip install removebg-infusiblecoder[gpu,cli] # for library + cli
+``
 ## Usage as a cli
 
 After the installation step you can use removebg_infusiblecoder just typing `removebg_infusiblecoder` in your terminal window.
 
-The `removebg_infusiblecoder` command has 3 subcommands, one for each input type:
+The `removebg_infusiblecoder` command has 4 subcommands, one for each input type:
 - `i` for files
 - `p` for folders
 - `s` for http server
+- `b` for RGB24 pixel binary stream
 
 You can get help about the main command using:
 
@@ -97,8 +100,23 @@ removebg_infusiblecoder -om i path/to/input.png path/to/output.png
 Remove the background applying an alpha matting
 
 ```
-removebg_infusiblecoder -a i path/to/input.png path/to/output.png
+removebg_infusiblecoder i -a path/to/input.png path/to/output.png
 ```
+
+Passing extras parameters
+
+```
+SAM example
+
+removebg_infusiblecoder i -m sam -x '{ "sam_prompt": [{"type": "point", "data": [724, 740], "label": 1}] }' examples/plants-1.jpg examples/plants-1.out.png
+```
+
+```
+Custom model example
+
+removebg_infusiblecoder i -m u2net_custom -x '{"model_path": "~/.u2net/u2net.onnx"}' path/to/input.png path/to/output.png
+```
+
 
 ### removebg_infusiblecoder `p`
 
@@ -120,19 +138,46 @@ removebg_infusiblecoder p -w path/to/input path/to/output
 
 Used to start http server.
 
-To see the complete endpoints documentation, go to: `http://localhost:5000/docs`.
+```
+removebg_infusiblecoder s --host 0.0.0.0 --port 7000 --log_level info
+```
+
+To see the complete endpoints documentation, go to: `http://localhost:7000/api`.
 
 Remove the background from an image url
 
 ```
-curl -s "http://localhost:5000/?url=http://input.png" -o output.png
+curl -s "http://localhost:7000/api/remove?url=http://input.png" -o output.png
 ```
 
 Remove the background from an uploaded image
 
 ```
-curl -s -F file=@/path/to/input.jpg "http://localhost:5000"  -o output.png
+curl -s -F file=@/path/to/input.jpg "http://localhost:7000/api/remove"  -o output.png
 ```
+
+### removebg_infusiblecoder `b`
+
+Process a sequence of RGB24 images from stdin. This is intended to be used with another program, such as FFMPEG, that outputs RGB24 pixel data to stdout, which is piped into the stdin of this program, although nothing prevents you from manually typing in images at stdin.
+
+```
+removebg_infusiblecoder b image_width image_height -o output_specifier
+```
+
+Arguments:
+
+- image_width : width of input image(s)
+- image_height : height of input image(s)
+- output_specifier: printf-style specifier for output filenames, for example if `output-%03u.png`, then output files will be named `output-000.png`, `output-001.png`, `output-002.png`, etc. Output files will be saved in PNG format regardless of the extension specified. You can omit it to write results to stdout.
+
+Example usage with FFMPEG:
+
+```
+ffmpeg -i input.mp4 -ss 10 -an -f rawvideo -pix_fmt rgb24 pipe:1 | removebg_infusiblecoder b 1280 720 -o folder/output-%03u.png
+```
+
+The width and height values must match the dimension of output images from FFMPEG. Note for FFMPEG, the "`-an -f rawvideo -pix_fmt rgb24 pipe:1`" part is required for the whole thing to work.
+
 
 ## Usage as a library
 
@@ -222,10 +267,16 @@ The available models are:
 -   u2net_cloth_seg ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/u2net_cloth_seg.onnx), [source](https://github.com/levindabhi/cloth-segmentation)): A pre-trained model for Cloths Parsing from human portrait. Here clothes are parsed into 3 category: Upper body, Lower body and Full body.
 -   silueta ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/silueta.onnx), [source](https://github.com/xuebinqin/U-2-Net/issues/295)): Same as u2net but the size is reduced to 43Mb.
 
+-   isnet-general-use ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/isnet-general-use.onnx), [source](https://github.com/xuebinqin/DIS)): A new pre-trained model for general use cases.
+-   isnet-anime ([download](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/isnet-anime.onnx), [source](https://github.com/SkyTNT/anime-segmentation)): A high-accuracy segmentation for anime character.
+-   sam ([download encoder](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/vit_b-encoder-quant.onnx), [download decoder](https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/vit_b-decoder-quant.onnx), [source](https://github.com/facebookresearch/segment-anything)): A pre-trained model for any use cases.
+
+
+
 ### How to train your own model
 
 If You need more fine tunned models try this:
-https://github.com/danielgatis/rembg/issues/193#issuecomment-1055534289
+https://github.com/syedusama5556/removebg_infusiblecoder/issues/193#issuecomment-1055534289
 
 
 ## Some video tutorials
