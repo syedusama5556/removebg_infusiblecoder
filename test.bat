@@ -1,6 +1,10 @@
-
+@echo off
+rmdir /s /q "dist"
 pip uninstall removebg-infusiblecoder -y
 python setup.py sdist bdist_wheel
 cd dist
-pip install removebg_infusiblecoder-0.0.5-py3-none-any.whl
+for %%f in (removebg_infusiblecoder-*.whl) do (
+    pip install "%%f[cli]" -U
+)
 removebg_infusiblecoder s
+pause

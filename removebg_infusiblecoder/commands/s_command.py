@@ -26,7 +26,7 @@ from ..sessions.base import BaseSession
 @click.option(
     "-p",
     "--port",
-    default=7000,
+    default=5000,
     type=int,
     show_default=True,
     help="port",

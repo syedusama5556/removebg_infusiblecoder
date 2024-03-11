@@ -1,9 +1,8 @@
 name: Publish to Pypi
 
 on:
-    push:
-        tags:
-            - "v*.*.*"
+    workflow_dispatch: 
+
 
 jobs:
     publish_pypi:

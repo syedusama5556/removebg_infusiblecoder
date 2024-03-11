@@ -53,7 +53,7 @@ extras_require = {
 
 entry_points = {
     "console_scripts": [
-        "rembg=rembg.cli:main",
+        "removebg_infusiblecoder=removebg_infusiblecoder.cli:main",
     ],
 }
 
