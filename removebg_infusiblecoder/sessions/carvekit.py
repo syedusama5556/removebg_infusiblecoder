@@ -26,13 +26,13 @@ class CarveKitSession(BaseSession):
             object_type="object",  # Can be "object" or "hairs-like".
             batch_size_seg=5,
             batch_size_matting=1,
-            device='cuda' if torch.cuda.is_available() else 'cpu',
+            device="cuda" if torch.cuda.is_available() else "cpu",
             seg_mask_size=640,  # Use 640 for Tracer B7 and 320 for U2Net
             matting_mask_size=2048,
             trimap_prob_threshold=231,
             trimap_dilation=30,
             trimap_erosion_iters=5,
-            fp16=False
+            fp16=False,
         )
 
     def predict(self, img: PILImage, *args, **kwargs) -> List[PILImage]:
@@ -48,14 +48,16 @@ class CarveKitSession(BaseSession):
             List[PILImage]: The list containing the processed image without background.
         """
         # Save the PILImage to a temporary file
-        with tempfile.NamedTemporaryFile(suffix='.png', mode='w+b', delete=False) as tmp:
-            img.save(tmp, format='PNG')
+        with tempfile.NamedTemporaryFile(
+            suffix=".png", mode="w+b", delete=False
+        ) as tmp:
+            img.save(tmp, format="PNG")
             tmp_path = tmp.name
-        
+
         try:
             # Process the image through the interface
             images_without_background = self.interface([tmp_path])
-            
+
             # Load the processed image(s) as PILImage
             # processed_images = [Image.open(image_path).convert('RGB') for image_path in images_without_background]
 
@@ -65,20 +67,21 @@ class CarveKitSession(BaseSession):
             # cat_wo_bg.save('2.png')
             # print(img)
             # print(cat_wo_bg)
-            # Assuming the interface returns a list of images, 
+            # Assuming the interface returns a list of images,
+            images_without_bg = images_without_background[0].resize(
+                img.size, Image.LANCZOS
+            )
 
         finally:
             # Cleanup the temporary file
             os.unlink(tmp_path)
 
-        return [images_without_background[0]]
-
+        return [images_without_bg]
 
         # mask = Image.open(images_without_background[0])
         # mask = mask.resize(img.size, Image.LANCZOS)
 
         # return [mask]
-
 
         # # return images_without_background
 

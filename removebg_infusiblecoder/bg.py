@@ -255,9 +255,9 @@ def remove(
         session = new_session("u2net", *args, **kwargs)
 
     if session == "carvekit":
+        putalpha = False
         masks = session.predict(img, *args, **kwargs)
         if post_process_mask:
-
             mask = Image.fromarray(post_process(np.array(masks[0])))
         else:
             mask = masks[0]
@@ -268,8 +268,7 @@ def remove(
 
         return bio.read()
 
-
-    else:    
+    else:
         masks = session.predict(img, *args, **kwargs)
         cutouts = []
 
