@@ -254,53 +254,69 @@ def remove(
     if session is None:
         session = new_session("u2net", *args, **kwargs)
 
-    masks = session.predict(img, *args, **kwargs)
-    cutouts = []
-
-    for mask in masks:
+    if session == "carvekit":
+        masks = session.predict(img, *args, **kwargs)
         if post_process_mask:
-            mask = Image.fromarray(post_process(np.array(mask)))
 
-        if only_mask:
-            cutout = mask
+            mask = Image.fromarray(post_process(np.array(masks[0])))
+        else:
+            mask = masks[0]
+        print(mask)
+        bio = io.BytesIO()
+        mask.save(bio, "PNG")
+        bio.seek(0)
 
-        elif alpha_matting:
-            try:
-                cutout = alpha_matting_cutout(
-                    img,
-                    mask,
-                    alpha_matting_foreground_threshold,
-                    alpha_matting_background_threshold,
-                    alpha_matting_erode_size,
-                )
-            except ValueError:
+        return bio.read()
+
+
+    else:    
+        masks = session.predict(img, *args, **kwargs)
+        cutouts = []
+
+        for mask in masks:
+            if post_process_mask:
+                mask = Image.fromarray(post_process(np.array(mask)))
+
+            if only_mask:
+                cutout = mask
+
+            elif alpha_matting:
+                try:
+                    cutout = alpha_matting_cutout(
+                        img,
+                        mask,
+                        alpha_matting_foreground_threshold,
+                        alpha_matting_background_threshold,
+                        alpha_matting_erode_size,
+                    )
+                except ValueError:
+                    if putalpha:
+                        cutout = putalpha_cutout(img, mask)
+                    else:
+                        cutout = naive_cutout(img, mask)
+            else:
                 if putalpha:
                     cutout = putalpha_cutout(img, mask)
                 else:
                     cutout = naive_cutout(img, mask)
-        else:
-            if putalpha:
-                cutout = putalpha_cutout(img, mask)
-            else:
-                cutout = naive_cutout(img, mask)
 
-        cutouts.append(cutout)
+            cutouts.append(cutout)
 
-    cutout = img
-    if len(cutouts) > 0:
-        cutout = get_concat_v_multi(cutouts)
+        cutout = img
+        if len(cutouts) > 0:
+            cutout = get_concat_v_multi(cutouts)
 
-    if bgcolor is not None and not only_mask:
-        cutout = apply_background_color(cutout, bgcolor)
+        if bgcolor is not None and not only_mask:
+            cutout = apply_background_color(cutout, bgcolor)
 
-    if ReturnType.PILLOW == return_type:
-        return cutout
+        if ReturnType.PILLOW == return_type:
+            return cutout
 
-    if ReturnType.NDARRAY == return_type:
-        return np.asarray(cutout)
+        if ReturnType.NDARRAY == return_type:
+            return np.asarray(cutout)
 
-    bio = io.BytesIO()
-    cutout.save(bio, "PNG")
-    bio.seek(0)
+        bio = io.BytesIO()
+        cutout.save(bio, "PNG")
+        bio.seek(0)
 
-    return bio.read()
+        return bio.read()

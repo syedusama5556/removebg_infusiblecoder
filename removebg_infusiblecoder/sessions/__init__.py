@@ -51,3 +51,9 @@ from .u2netp import U2netpSession
 
 sessions_class.append(U2netpSession)
 sessions_names.append(U2netpSession.name())
+
+
+from .carvekit import CarveKitSession
+
+sessions_class.append(CarveKitSession)
+sessions_names.append(CarveKitSession.name())
