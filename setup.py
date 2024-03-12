@@ -16,7 +16,7 @@ install_requires = [
     "jsonschema",
     "numpy",
     "onnxruntime",
-    "opencv-python-headless",
+    "opencv-contrib-python-headless",
     "pillow",
     "pooch",
     "pymatting",
