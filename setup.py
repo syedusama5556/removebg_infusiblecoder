@@ -32,6 +32,7 @@ install_requires = [
     "python-multipart",
     "uvicorn",
     "watchdog",
+    "requests",
 ]
 
 extras_require = {
