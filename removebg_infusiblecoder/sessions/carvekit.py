@@ -103,7 +103,7 @@ class CarveKitSession(BaseSession):
             (
                 None
                 if cls.checksum_disabled(*args, **kwargs)
-                else "md5:60024c5c889badc19c04ad937298a77b"
+                else "md5:8e83ca70e441ab06c318d82300c84806"
             ),
             fname=fname,
             path=cls.u2net_home(*args, **kwargs),
