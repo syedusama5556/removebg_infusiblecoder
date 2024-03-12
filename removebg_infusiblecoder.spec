@@ -5,6 +5,7 @@ datas = []
 datas += collect_data_files('gradio_client')
 datas += collect_data_files('gradio')
 datas += collect_data_files('onnxruntime')
+datas += collect_data_files('carvekit')
 
 a = Analysis(
     ['removebg_infusiblecoder.py'],
@@ -17,7 +18,7 @@ a = Analysis(
     runtime_hooks=[],
     excludes=[],
     noarchive=False,
-    module_collection_mode={
+module_collection_mode={
         'gradio': 'py',
     },
 )

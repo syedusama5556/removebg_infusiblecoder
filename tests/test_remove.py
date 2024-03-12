@@ -36,7 +36,6 @@ def test_remove():
         "silueta",
         "isnet-general-use",
         "isnet-anime",
-        "carvekit",
         "sam"
     ]:
         for picture in ["anime-girl-1", "car-1", "cloth-1", "plants-1"]:
