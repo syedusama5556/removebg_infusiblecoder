@@ -12,6 +12,7 @@ here = pathlib.Path(__file__).parent.resolve()
 long_description = (here / "README.md").read_text(encoding="utf-8")
 
 install_requires = [
+    "carvekit",
     "jsonschema",
     "numpy",
     "onnxruntime",
@@ -22,6 +23,15 @@ install_requires = [
     "scikit-image",
     "scipy",
     "tqdm",
+    "aiohttp",
+    "asyncer",
+    "click",
+    "fastapi",
+    "filetype",
+    "gradio",
+    "python-multipart",
+    "uvicorn",
+    "watchdog",
 ]
 
 extras_require = {
@@ -76,14 +86,13 @@ setup(
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Programming Language :: Python",
         "Programming Language :: Python :: 3 :: Only",
-        "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
     ],
     keywords="remove, background, u2net",
-    python_requires=">=3.8, <3.13",
+    python_requires=">=3.9, <3.13",
     packages=find_packages(),
     install_requires=install_requires,
     entry_points=entry_points,
@@ -91,4 +100,3 @@ setup(
     version=versioneer.get_version(),
     cmdclass=versioneer.get_cmdclass(),
 )
- 

@@ -6,6 +6,7 @@ RUN pip install --upgrade pip
 
 COPY . .
 
+# RUN python -m pip install ".[cli]" --extra-index-url https://download.pytorch.org/whl/cpu
 RUN python -m pip install ".[cli]"
 RUN removebg_infusiblecoder d
 
