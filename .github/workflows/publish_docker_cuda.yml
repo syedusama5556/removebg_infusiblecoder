@@ -26,6 +26,7 @@ jobs:
           push: true
           file: docker-compose.cuda.yml
           context: .
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/removebg_infusiblecoder:latest-cuda
           platforms: linux/amd64,linux/arm64
           secrets: |
             OCKER_HUB_USERNAME
