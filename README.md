@@ -45,7 +45,8 @@ GPU support:
 ```bash
 pip install removebg-infusiblecoder[gpu] # for library
 pip install removebg-infusiblecoder[gpu,cli] # for library + cli
-``
+
+```
 ## Usage as a cli
 
 After the installation step you can use removebg_infusiblecoder just typing `removebg_infusiblecoder` in your terminal window.
@@ -301,6 +302,6 @@ Liked some of my work? Buy me a coffee (or more likely a beer)
 
 ## License
 
-Copyright (c) 2022-present [Syed Usama Ahmad](https://github.com/syedusama5556)
+Copyright (c) 2024-present [Syed Usama Ahmad](https://github.com/syedusama5556)
 
 Licensed under [MIT License](./LICENSE.txt)
