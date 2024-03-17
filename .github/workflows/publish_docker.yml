@@ -1,4 +1,4 @@
-name: Build and Publish CUDA Docker Image
+name: Build and Publish CPU Docker Image
 
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          file: docker-compose.cuda.yml
+          file: docker-compose.cpu.yml
           context: .
           platforms: linux/amd64,linux/arm64
           secrets: |
