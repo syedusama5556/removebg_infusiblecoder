@@ -126,6 +126,8 @@ class CarveKitSession():
         Returns:
             str: The path to the downloaded model file.
         """
+
+        # hash of file eae3c2c08d8398f233f2999866ffb47bbd4440282ac5c2e2b490aca1618d4410
         fname = f"{cls.name(*args, **kwargs)}.pth"
         pooch.retrieve(
         "https://github.com/syedusama5556/removebg_infusiblecoder/releases/download/v0.0.0/carvekit.pth",

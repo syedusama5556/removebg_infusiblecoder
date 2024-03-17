@@ -1,0 +1,15 @@
+FROM pytorch/pytorch:2.1.2-cuda12.1-cudnn8-runtime
+
+WORKDIR /removebg_infusiblecoder
+
+RUN pip install --upgrade pip
+
+COPY . .
+
+RUN python -m pip install ".[gpu,cli]" --default-timeout=100 future
+# RUN python -m pip install ".[cli]" --default-timeout=100 future
+# RUN removebg_infusiblecoder d
+
+EXPOSE 5000
+ENTRYPOINT ["removebg_infusiblecoder"]
+CMD ["s"]

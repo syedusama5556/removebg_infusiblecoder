@@ -1,0 +1,15 @@
+services:
+  removebg_infusiblecoder:
+    image: syedusama5556/removebg_infusiblecoder:latest-cuda
+    ports:
+      - "5000:5000"
+    build:
+      context: .
+      dockerfile: Dockerfile.cuda  
+    deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                device_ids: ['0']
+                capabilities: [gpu]
