@@ -5,18 +5,14 @@ try:
     with open("test.png", "rb") as file_data:
         mask_type = "rgba"  # rgba,green,blur,map
         
-        # Make the request to the API
         r = requests.post("https://www.taskswithcode.com/salient_object_detection_api/",
                           data={"mask": mask_type}, files={"test": file_data})
         
-        # Check if the request was successful
         r.raise_for_status()
         
-        # Write the response content to a file
         with open('output_file.png', "wb") as output_file:
             output_file.write(r.content)
         
-        # Prepare results
         results = {"response": r.content, "size": len(r.content)}
         print("API request successful!")
         

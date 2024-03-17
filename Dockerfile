@@ -12,4 +12,4 @@ RUN removebg_infusiblecoder d
 
 EXPOSE 5000
 ENTRYPOINT ["removebg_infusiblecoder"]
-CMD ["--help"]
+CMD ["s"]
