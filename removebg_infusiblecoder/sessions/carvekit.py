@@ -102,7 +102,7 @@ class CarveKitSession():
             )
 
         finally:
-            # Cleanup the temporary file
+            # Cleanup the temporary files
             os.unlink(tmp_path)
 
         return [images_without_bg]
