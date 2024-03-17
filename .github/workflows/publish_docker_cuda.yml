@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          file: docker-compose.cuda.yml
+          file: Dockerfile.cuda
           context: .
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/removebg_infusiblecoder:latest-cuda
           platforms: linux/amd64,linux/arm64

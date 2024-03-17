@@ -32,7 +32,7 @@ jobs:
         uses: docker/build-push-action@v5
         with:
           push: true
-          file: docker-compose.cpu.yml
+          file: Dockerfile.cpu
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/removebg_infusiblecoder:latest
           context: .
           platforms: linux/amd64,linux/arm64
