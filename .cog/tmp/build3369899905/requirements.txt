@@ -1,0 +1,22 @@
+--find-links https://download.pytorch.org/whl/torch_stable.html
+carvekit
+jsonschema
+numpy
+onnxruntime
+opencv-contrib-python-headless
+pillow
+pooch
+pymatting
+scikit-image
+scipy
+tqdm
+aiohttp
+asyncer
+click
+fastapi
+filetype
+gradio
+python-multipart
+uvicorn
+watchdog
+requests

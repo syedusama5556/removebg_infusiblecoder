@@ -39,7 +39,7 @@ class CarveKitSession():
         self.inner_session = None
         DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
-        model_path_is = str(self.__class__.download_models(*args, **kwargs))
+        model_path_is = str(self.__class__.download_models(self,*args, **kwargs))
 
         # Initialize HiInterface here
         # self.interface = HiInterface(
@@ -141,7 +141,7 @@ class CarveKitSession():
         return os.path.join(cls.u2net_home(*args, **kwargs), fname)
 
 
-    def u2net_home(cls, *args, **kwargs):
+    def u2net_home( *args, **kwargs):
         return os.path.expanduser(
             os.getenv(
                 "U2NET_HOME", os.path.join(os.getenv("XDG_DATA_HOME", "~"), ".u2net")

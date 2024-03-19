@@ -1,0 +1,40 @@
+image: "r8.im/syedusama5556/removebg-infusiblecoder"
+build:
+  gpu: true
+  python_version: "3.11" # Adjust based on your python_requires specification
+  python_packages:
+    - carvekit
+    - jsonschema
+    - numpy
+    - onnxruntime
+    - opencv-contrib-python-headless
+    - pillow
+    - pooch
+    - pymatting
+    - scikit-image
+    - scipy
+    - tqdm
+    - aiohttp
+    - asyncer
+    - click
+    - fastapi
+    - filetype
+    - gradio
+    - python-multipart
+    - uvicorn
+    - watchdog
+    - requests
+  run:
+    # - pip install removebg_infusiblecoder -U
+    - pip install cog 
+
+    # - python -m pip install ".[gpu,cli]" --default-timeout=100 future  
+  system_packages:
+  #   - "libgl1-mesa-glx"
+  #   - "libglib2.0-0"
+    - "ffmpeg"
+    - "git"
+  #   # - "libavcodec-dev"
+
+predict: "predict.py:Predictor"
+

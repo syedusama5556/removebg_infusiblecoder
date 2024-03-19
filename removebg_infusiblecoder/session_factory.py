@@ -9,7 +9,7 @@ from .sessions.u2net import U2netSession
 
 
 def new_session(
-    model_name: str = "u2net", providers=None, *args, **kwargs
+    model_name: str = "cravekit", providers=None, *args, **kwargs
 ) -> BaseSession:
     """
     Create a new session object based on the specified model name.
