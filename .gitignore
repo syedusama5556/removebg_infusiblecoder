@@ -2,6 +2,7 @@
 build/
 dist/
 .venv/
+.cog/
 .direnv/
 *.egg-info/
 *.egg

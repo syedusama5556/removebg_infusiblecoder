@@ -12,7 +12,7 @@ class Predictor(BasePredictor):
     def setup(self):
         """Load the model into memory to make predictions faster"""
         # self.sessions = {}  # Assuming sessions is a dict mapping model names to session objects
-        download_models()
+        # download_models()
 
     def predict(
         self,
